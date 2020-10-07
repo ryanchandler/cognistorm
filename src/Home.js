@@ -26,7 +26,7 @@ class Home extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-         <h1>Cognistorm</h1>
+         <h1>CogniStorm</h1>
          <h4>Artificial Intelligence Dialog Engine</h4>
 
         </header>
