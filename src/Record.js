@@ -3,6 +3,7 @@ import './App.css';
 import MicRecorder from 'mic-recorder-to-mp3';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Button';
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -54,11 +55,15 @@ class Record extends React.Component {
   render(){
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header-short">
+        <h1>CogniStorm</h1>
+         <h4>Artificial Intelligence Dialog Engine</h4>
+        </header>
+        <div style={{margin:"50px"}}>
           <Button  className='button' onClick={this.start} disabled={this.state.isRecording}>Record</Button>
           <Button  className='button'  onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
           <audio src={this.state.blobURL} controls="controls" />
-        </header>
+          </div>
       </div>
     );
   }

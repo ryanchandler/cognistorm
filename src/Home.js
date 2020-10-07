@@ -3,6 +3,7 @@ import './App.css';
 import MicRecorder from 'mic-recorder-to-mp3';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Tornado from './tornado.png'
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -26,6 +27,7 @@ class Home extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+    
          <h1>CogniStorm</h1>
          <h4>Artificial Intelligence Dialog Engine</h4>
 
