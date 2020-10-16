@@ -4,8 +4,30 @@ import MicRecorder from 'mic-recorder-to-mp3';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Button';
+const axios = require('axios').default;
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
+
+
+function getData()
+{
+// Make a request for a user with a given ID
+axios.get('https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+}
+
+
+ 
 
 class Record extends React.Component {
   constructor(props){
@@ -37,6 +59,7 @@ class Record extends React.Component {
         const blobURL = URL.createObjectURL(blob)
         this.setState({ blobURL, isRecording: false });
       }).catch((e) => console.log(e));
+      getData();
   };
 
   componentDidMount() {
@@ -51,6 +74,10 @@ class Record extends React.Component {
       },
     );
   }
+
+
+
+  
 
   render(){
     return (
