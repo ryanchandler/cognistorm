@@ -96,11 +96,13 @@ class Record extends React.Component {
         <h1>CogniStorm</h1>
          <h4>Artificial Intelligence Dialog Engine</h4>
         </header>
-        <div style={{margin:"50px"}}>
-          <Button  className='button' onClick={this.start} disabled={this.state.isRecording}>Record</Button>
-          <Button  className='button'  onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
-          <audio src={this.state.blobURL} controls="controls" />
+        <div style={{margin:"50px" ,justifyContent: 'center', alignItems: 'center'  }}>
+          <Button style={{width:"150px", margin:"20px"}}  className='button' onClick={this.start} disabled={this.state.isRecording}>Record</Button>
+          <Button style={{width:"150px", margin:"20px"}} className='button'  onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
+          
+          
           </div>
+          <div style={{margin:"50px" ,justifyContent: 'center', alignItems: 'center' }}><audio src={this.state.blobURL} controls="controls" /></div>
       </div>
     );
   }
