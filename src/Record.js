@@ -8,11 +8,21 @@ const axios = require('axios').default;
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
-
+//'Access-Control-Request-Headers: Content-Type, Authorization'
 function getData()
 {
 // Make a request for a user with a given ID
-axios.get('https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read')
+axios.get('https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read2', {
+
+headers:{
+
+  'Content-Type': 'text/plain'
+
+}
+
+
+
+})
   .then(function (response) {
     // handle success
     console.log(response);
