@@ -9,12 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
 
-window.onload=function(){
-
-
-  // Select your input type file and store it in a variable
-const input = document.getElementById('fileinput');
-
 // This will upload the file after having read it
 const upload = (file) => {
   fetch('https://huzujy3mjd.execute-api.us-east-1.amazonaws.com/dev/storeaudiotos3', { // Your POST endpoint
@@ -33,6 +27,15 @@ const upload = (file) => {
     error => console.log(error) // Handle the error response object
   );
 };
+
+
+window.onload=function(){
+
+
+  // Select your input type file and store it in a variable
+const input = document.getElementById('fileinput');
+
+
 
 // Event handler executed when a file is selected
 const onSelectFile = () => {upload(input.files[0]); console.log("fired");};
@@ -102,6 +105,13 @@ class Record extends React.Component {
       .then(([buffer, blob]) => {
         const blobURL = URL.createObjectURL(blob)
         this.setState({ blobURL, isRecording: false });
+        console.log(blobURL)
+        var file = new File([blob], "myFilename.mp3", {type: 'audio/mpeg', lastModified: Date.now()});
+        
+        
+        upload(file)
+        
+
       }).catch((e) => console.log(e));
       
       
