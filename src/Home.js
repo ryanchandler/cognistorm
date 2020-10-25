@@ -1,11 +1,8 @@
 import React from 'react';
 import './App.css';
-import MicRecorder from 'mic-recorder-to-mp3';
-import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Tornado from './tornado.png'
 
-const Mp3Recorder = new MicRecorder({ bitRate: 128 });
+
 
 class Home extends React.Component {
   constructor(props){
@@ -19,9 +16,6 @@ class Home extends React.Component {
 
   
 
-  
-
-  
 
   render(){
     return (
