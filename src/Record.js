@@ -3,6 +3,8 @@ import './App.css';
 import MicRecorder from 'mic-recorder-to-mp3';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ArrowRight } from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
 //const axios = require('axios').default;
 
@@ -40,9 +42,7 @@ const input = document.getElementById('fileinput');
 // Event handler executed when a file is selected
 const onSelectFile = () => {upload(input.files[0]); console.log("fired");};
 
-// Add a listener on your input
-// It will be triggered when a file will be selected
-input.addEventListener('change', onSelectFile, false);
+
 
 }
 
@@ -144,10 +144,16 @@ class Record extends React.Component {
         <div style={{margin:"50px" ,justifyContent: 'center', alignItems: 'center'  }}>
           <Button style={{width:"150px", margin:"20px"}}  className='button' onClick={this.start} disabled={this.state.isRecording}>Record</Button>
           <Button style={{width:"150px", margin:"20px"}} className='button'  onClick={this.stop} disabled={!this.state.isRecording}>Stop</Button>
+          <div style={{margin:"50px" ,justifyContent: 'center', alignItems: 'center' }}></div>
           <input type="file" id="fileinput"></input>
          
           </div>
           <div style={{margin:"50px" ,justifyContent: 'center', alignItems: 'center' }}><audio src={this.state.blobURL} controls="controls" /></div>
+
+          <br></br>
+          <Link to="/SessionComplete">
+          <ArrowRight size={80} />
+          </Link>
       </div>
     );
   }

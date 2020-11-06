@@ -1,18 +1,25 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import cookie from 'react-cookies'
+import { v4 as uuidv4 } from 'uuid';
 import { ArrowRight } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
 
-
-class Home extends React.Component {
+class SessionComplete extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      subjectCookie: null,
+      subjectCookie: cookie.load("my cookie"),
 
     };
+  }
+
+ 
+  
+  componentDidMount() {
+   cookie.save("my cookie", uuidv4())
   }
 
   
@@ -21,26 +28,25 @@ class Home extends React.Component {
   render(){
     return (
       <div className="App">
-        <header className="App-header-short">
+       <header className="App-header-short">
     
-         <h1>CogniStorm</h1>
-         <h4>Artificial Intelligence Development Portal</h4>
+         <h1>Thank You</h1>
+         <h4>Your session is complete</h4>
 
         </header>
-
         <div style={{margin:"50px" ,justifyContent: 'center', alignItems: 'center'  }}> 
 
 
-          Proceed to Voice Actor Page
+          Here is your redemption code.  Please go to XXXXX.amazon.com to redeem
           <br></br>
-          <Link to="/Welcome">
-          <ArrowRight size={80} />
-          </Link>
+
 
         </div>
+
+
       </div>
     );
   }
 }
 
-export default Home;
+export default SessionComplete;
