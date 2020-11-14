@@ -7,6 +7,8 @@ import Welcome from './Welcome'
 import HowToComplete from './HowToComplete'
 import HardwareTest from './HardwareTest'
 import SessionComplete from './SessionComplete'
+//import Graph from './Graph'
+import TestQuestion from './TestQuestion'
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
@@ -21,10 +23,12 @@ class App extends Component {
             <Route path="/HowToComplete" exact component={HowToComplete} />
             <Route path="/HardwareTest" exact component={HardwareTest} />
             <Route path="/Record" exact component={Record} />
-            <Route path="/SessionComplete" exact component={SessionComplete} />
+            <Route path="/SessionComplete" exact componenrt={SessionComplete} />
             
+            <Route path="/TestQuestion" exact component={TestQuestion} />
+
             <Route path="/upload" exact component={Upload} />
-            <Route exact path="/Graph" render={() => {window.location.href="Graph.html"}} />
+            
 
       </BrowserRouter>
     );
