@@ -9,6 +9,7 @@ import HardwareTest from './HardwareTest'
 import SessionComplete from './SessionComplete'
 //import Graph from './Graph'
 import TestQuestion from './TestQuestion'
+import Consent from './Consent'
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
@@ -26,7 +27,7 @@ class App extends Component {
             <Route path="/SessionComplete" exact componenrt={SessionComplete} />
             
             <Route path="/TestQuestion" exact component={TestQuestion} />
-
+            <Route path="/Consent" exact component={Consent} />
             <Route path="/upload" exact component={Upload} />
             
 

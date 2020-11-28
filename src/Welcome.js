@@ -5,6 +5,7 @@ import cookie from 'react-cookies'
 import { v4 as uuidv4 } from 'uuid';
 import { ArrowRight } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
 
 
 class Welcome extends React.Component {
@@ -12,8 +13,11 @@ class Welcome extends React.Component {
     super(props);
     this.state = {
       subjectCookie: null,
+      consented: false,
 
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
  
@@ -22,12 +26,24 @@ class Welcome extends React.Component {
    cookie.save("my cookie", uuidv4())
   }
 
-  
 
+
+
+
+
+  
+  
+  handleChange(evt){
+    this.setState({
+      consented: evt.target.checked
+    }, () => console.log(this.state.consented) );
+
+    
+  }
 
   render(){
     return (
-      <div className="App">
+      <div className="consent">
        <header className="App-header-short">
     
          <h1>Welcome</h1>
@@ -37,7 +53,30 @@ class Welcome extends React.Component {
         <div style={{margin:"50px" ,justifyContent: 'center', alignItems: 'center'  }}> 
 
 
-          This is my body content
+         This is a research study being conducted by researchers from the University of Illinois.  The goal of the study is to teach computers to recognize subtle differences in meaning based on how words are spoken (voiced, inflected).
+<p></p>
+ You will be asked to speak words "yeah" and "uh-huh" into your computer's headset microphone.  You will be propted to say each word with a different characterizartion, or attitude.  For example you may be asked to say "uh-huh" as though you are very interesed or uninterested.
+
+<p></p>
+The main features of the study is:
+
+<ul>
+ <li>Your voice will be recorded and stored for at least five years</li>
+ <li>No personally identifiable information will tie the recordings to your identity</li>
+ <li>You may stop the process at any time with no negative repercussions</li>
+ </ul>
+          <Form>
+  <Form.Group controlId="consent">
+
+
+  <a href="https://www.cognistorm.com/Consent" target="_blank">Consent Details</a>
+  <Form.Check type="checkbox"  checked={this.state.consented}  onChange={this.handleChange} label="I consent to participate as described in the consent details in link provided above" /> 
+  
+  
+  </Form.Group>
+
+</Form>
+
           <br></br>
           <Link to="/HowToComplete">
           <ArrowRight size={80} />
