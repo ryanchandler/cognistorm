@@ -7,6 +7,7 @@ import { ArrowRight } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 
+const axios = require('axios').default;
 
 class Welcome extends React.Component {
   constructor(props){
@@ -14,6 +15,7 @@ class Welcome extends React.Component {
     this.state = {
       subjectCookie: null,
       consented: false,
+      initialUUIDNoHyphens:''
 
     };
 
@@ -23,7 +25,10 @@ class Welcome extends React.Component {
  
   
   componentDidMount() {
-   cookie.save("my cookie", uuidv4())
+
+  var initialUUID =  uuidv4()
+  this.state.initialUUID = initialUUID
+   cookie.save("my cookie", initialUUIDNoHyphens)
   }
 
 
@@ -38,6 +43,22 @@ class Welcome extends React.Component {
       consented: evt.target.checked
     }, () => console.log(this.state.consented) );
 
+    console.log("consented");
+
+
+
+    axios({
+      method: 'put', //you can set what request you want to be
+      url: 'https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/WriteVoiceActorDatatoDatabase/?uid=' + this.state.initialUUID ,
+      data: {uid: "barney"},
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        
+      }
+    })
+
+
+   
     
   }
 
