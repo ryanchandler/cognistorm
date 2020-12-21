@@ -15,7 +15,7 @@ class Welcome extends React.Component {
     this.state = {
       subjectCookie: null,
       consented: false,
-      initialUUIDNoHyphens:''
+      initialUUID:''
 
     };
 
@@ -28,7 +28,7 @@ class Welcome extends React.Component {
 
   var initialUUID =  uuidv4()
   this.state.initialUUID = initialUUID
-   cookie.save("my cookie", initialUUIDNoHyphens)
+   cookie.save("my cookie", initialUUID)
   }
 
 
