@@ -99,9 +99,13 @@ The main features of the study is:
 </Form>
 
           <br></br>
-          <Link to="/HowToComplete">
+          <Link to="/HardwareTest">
           <ArrowRight size={80} />
           </Link>
+
+
+
+
 
         </div>
 
