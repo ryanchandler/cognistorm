@@ -4,12 +4,14 @@ import Record from './Record';
 import Home from './Home';
 import Upload from './App'
 import Welcome from './Welcome'
-import HowToComplete from './HowToComplete'
+import Instructions from './Instructions'
 import HardwareTest from './HardwareTest'
 import SessionComplete from './SessionComplete'
 //import Graph from './Graph'
 import TestQuestion from './TestQuestion'
 import Consent from './Consent'
+import Testing from './Testing'
+
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
@@ -21,7 +23,7 @@ class App extends Component {
 
             <Route path="/" exact component={Home} />
             <Route path="/Welcome" exact component={Welcome} />
-            <Route path="/HowToComplete" exact component={HowToComplete} />
+            <Route path="/Instructions" exact component={Instructions} />
             <Route path="/HardwareTest" exact component={HardwareTest} />
             <Route path="/Record" exact component={Record} />
             <Route path="/SessionComplete" exact componenrt={SessionComplete} />
@@ -29,6 +31,7 @@ class App extends Component {
             <Route path="/TestQuestion" exact component={TestQuestion} />
             <Route path="/Consent" exact component={Consent} />
             <Route path="/upload" exact component={Upload} />
+            <Route path="/Testing" exact component={Testing} />
             
 
       </BrowserRouter>

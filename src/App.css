@@ -52,3 +52,11 @@ color: darkgoldenrod;
     transform: rotate(360deg);
   }
 }
+
+
+.myBody{
+ margin:20px;
+  display: flex;
+  justify-content: center;
+  
+}
