@@ -24,21 +24,12 @@ class Instructions extends React.Component {
 
   getNextTask = ()=>{
 
+    fetch("https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read")
+    .then(res => res.json())
+    .then(res => console.log(res))
 
-  axios({
-    method: 'get', //you can set what request you want to be
-    url: 'https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read',
-    data: {uid: "barney"},
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      
-    }
-  })
-  .then((response) => {
-    console.log(response);
-  }, (error) => {
-    console.log(error);
-  });
+
+
 
 
  
