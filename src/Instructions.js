@@ -9,31 +9,33 @@ import Button from "react-bootstrap/Button";
 import UserPrompt from "./UserPrompt";
 const axios = require('axios').default;
 
+
+
 class Instructions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       subjectCookie: cookie.load("my cookie"),
+      dimension: '',
+      backchannel:'',
+      selectedDegree:'',
+      degree1Label:'',
+      degree2Label:'',
     };
   }
 
   componentDidMount() {
     cookie.save("my cookie", uuidv4());
+    fetch("https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read")
+    .then(data => data.json())
+    .then(data => this.setState({ dimension: data.dimension, backchannel: data.backchannel, selectedDegree: data.selectedDegree, degree1Label: data.degree1Label, degree2Label: data.degree2Label  }))
+    
   }
 
 
   getNextTask = ()=>{
 
-    fetch("https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read")
-    .then(res => res.json())
-    .then(res => console.log(res))
 
-
-
-
-
- 
-  
 }
 
   render() {
@@ -50,28 +52,34 @@ class Instructions extends React.Component {
               width: "600px",
             }}
           >
-            <div> </div>
+            <div className="myLeftJustify"> 
+            <br></br>
+            You will hear a random prompt like, "you can make a lot of money with this program"
+            followed by a beep. 
+            <br></br>
+            
+            <br></br>
+            You will respond by saying <b>"uh-huh" </b> in the manner indicated by the green circle.
             <br></br>
             <br></br>
-            You will see a visual prompt (below) indicating what word you will
-            say and how you should say it.
+            For neutral just say "uh-huh" with no special emphasis.
             <br></br>
             <br></br>
+            When you are ready click the start button.  This is just a test run.
             <br></br>
-            <b style={{ fontSize: "xx-large" }}> "uh-huh" </b>
             <br></br>
+            </div>
+
+            <b style={{ fontSize: "x-large" }}> {this.state.dimension} </b>
+            <br></br>
+            <b style={{ fontSize: "xx-large" }}> "{this.state.backchannel}" </b>
             <UserPrompt
-              neutral="neutral"
-              degree1="somewhat interested"
-              degree2="very interested"
-              selectedDegree="0"
+              neutral= "neutral"
+              degree1= {this.state.degree1Label}
+              degree2=  {this.state.degree2Label}
+              selectedDegree={this.state.selectedDegree}
             ></UserPrompt>
-            <p></p>
-            You will hear a random audio prompt followed by a beep.
-            <br></br>
-            Press the start button to perform practice example.
-            <br></br>
-            <br></br>
+  
             <Button onClick={()=> this.getNextTask()}>Start </Button>
             <br></br>
             <br></br>

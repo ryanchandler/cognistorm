@@ -60,3 +60,12 @@ color: darkgoldenrod;
   justify-content: center;
   
 }
+
+.myLeftJustify{
+
+
+
+  justify-content: left;
+  text-align: left;
+
+}
