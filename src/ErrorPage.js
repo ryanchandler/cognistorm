@@ -7,20 +7,17 @@ import { ArrowRight } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
 
-class SessionComplete extends React.Component {
+class ErrorPage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      subjectCookie: cookie.load("my cookie"),
+  
 
     };
   }
 
  
   
-  componentDidMount() {
-  
-  }
 
   
 
@@ -30,15 +27,13 @@ class SessionComplete extends React.Component {
       <div className="App">
        <header className="App-header-short">
     
-         <h1>Thank You</h1>
-         <h4>Your session is complete</h4>
+         <h1>Error</h1>
+         <h4>Your browser is not accepting (or retaining) the subject tracking cookie.</h4>
 
         </header>
         <div style={{margin:"50px" ,justifyContent: 'center', alignItems: 'center'  }}> 
 
 
-          Here is your redemption code.  Please go to XXXXX.amazon.com to redeem
-          <br></br>
 
 
         </div>
@@ -49,4 +44,4 @@ class SessionComplete extends React.Component {
   }
 }
 
-export default SessionComplete;
+export default ErrorPage;

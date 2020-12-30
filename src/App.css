@@ -55,7 +55,7 @@ color: darkgoldenrod;
 
 
 .myBody{
- margin:20px;
+  margin:20px;
   display: flex;
   justify-content: center;
   
@@ -68,4 +68,9 @@ color: darkgoldenrod;
   justify-content: left;
   text-align: left;
 
+}
+
+.myButts{
+
+  margin: 30px;
 }

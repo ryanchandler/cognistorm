@@ -10,107 +10,101 @@ import { Form } from 'react-bootstrap';
 const axios = require('axios').default;
 
 class Welcome extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       subjectCookie: null,
       consented: false,
-      initialUUID:''
-
+      initialUUID: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
- 
-  
   componentDidMount() {
+    var initialUUID = uuidv4();
+    this.state.initialUUID = initialUUID;
 
-  var initialUUID =  uuidv4()
-  this.state.initialUUID = initialUUID
-   cookie.save("my cookie", initialUUID)
+    if (!cookie.load("subjectUUID")) {
+      cookie.save("subjectUUID", initialUUID);
+    }
   }
 
-
-
-
-
-
-  
-  
-  handleChange(evt){
-    this.setState({
-      consented: evt.target.checked
-    }, () => console.log(this.state.consented) );
+  handleChange(evt) {
+    this.setState(
+      {
+        consented: evt.target.checked,
+      },
+      () => console.log(this.state.consented)
+    );
 
     console.log("consented");
 
-
-
     axios({
-      method: 'put', //you can set what request you want to be
-      url: 'https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/WriteVoiceActorDatatoDatabase/?uid=' + this.state.initialUUID ,
-      data: {uid: "barney"},
+      method: "put", //you can set what request you want to be
+      url:
+        "https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/WriteVoiceActorDatatoDatabase/?uid=" +
+        this.state.initialUUID,
+      data: { uid: "barney" },
       headers: {
-        'Access-Control-Allow-Origin': '*',
-        
-      }
-    })
-
-
-   
-    
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
   }
 
-  render(){
+  render() {
     return (
       <div className="consent">
-       <header className="App-header-short">
-    
-         <h1>Welcome</h1>
-        
-
+        <header className="App-header-short">
+          <h1>Welcome</h1>
         </header>
-        <div style={{margin:"50px" ,justifyContent: 'center', alignItems: 'center'  }}> 
+        <div
+          style={{
+            margin: "50px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          This is a research study being conducted by researchers from the
+          University of Illinois. The goal of the study is to teach computers to
+          recognize subtle differences in meaning based on how words are spoken
+          (voiced, inflected).
+          <p></p>
+          You will be asked to speak words "yeah" and "uh-huh" into your
+          computer's headset microphone. You will be propted to say each word
+          with a different characterizartion, or attitude. For example you may
+          be asked to say "uh-huh" as though you are very interesed or
+          uninterested.
+          <p></p>
+          The main features of the study is:
+          <ul>
+            <li>
+              Your voice will be recorded and stored and will be made public as a part of the research dataset.
+            </li>
+            <li>
+              No personally identifiable information will tie the recordings to
+              your identity
+            </li>
 
-
-         This is a research study being conducted by researchers from the University of Illinois.  The goal of the study is to teach computers to recognize subtle differences in meaning based on how words are spoken (voiced, inflected).
-<p></p>
- You will be asked to speak words "yeah" and "uh-huh" into your computer's headset microphone.  You will be propted to say each word with a different characterizartion, or attitude.  For example you may be asked to say "uh-huh" as though you are very interesed or uninterested.
-
-<p></p>
-The main features of the study is:
-
-<ul>
- <li>Your voice will be recorded and stored for at least five years</li>
- <li>No personally identifiable information will tie the recordings to your identity</li>
- <li>You may stop the process at any time with no negative repercussions</li>
- </ul>
+          </ul>
           <Form>
-  <Form.Group controlId="consent">
-
-
-  <a href="https://www.cognistorm.com/Consent" target="_blank">Consent Details</a>
-  <Form.Check type="checkbox"  checked={this.state.consented}  onChange={this.handleChange} label="I consent to participate as described in the consent details in link provided above" /> 
-  
-  
-  </Form.Group>
-
-</Form>
-
+            <Form.Group controlId="consent">
+              <a href="https://www.cognistorm.com/Consent" target="_blank">
+                Consent Details
+              </a>
+              <Form.Check
+                type="checkbox"
+                checked={this.state.consented}
+                onChange={this.handleChange}
+                label="I consent to participate as described in the consent details in link provided above and the use of tracking cookies"
+              />
+            </Form.Group>
+          </Form>
           <br></br>
           <Link to="/HardwareTest">
-          <ArrowRight size={80} />
+            <ArrowRight size={80} />
           </Link>
-
-
-
-
-
-
         </div>
-
-
       </div>
     );
   }

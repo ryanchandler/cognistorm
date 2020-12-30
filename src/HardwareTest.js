@@ -5,6 +5,9 @@ import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ArrowRight } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
+import cookie from 'react-cookies'
+import { Route, Redirect } from 'react-router'
+
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
@@ -45,6 +48,7 @@ class HardwareTest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      subjectCookie: cookie.load("subjectUUID"),
       isRecording: false,
       blobURL: "",
       isBlocked: false,
@@ -95,6 +99,13 @@ class HardwareTest extends React.Component {
   }
 
   render() {
+
+    
+    if (!this.state.subjectCookie) {
+      return <Redirect to="/ErrorPage" />
+    }
+
+
     return (
       <div>
         <header className="App-header-short">

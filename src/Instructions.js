@@ -7,6 +7,7 @@ import { ArrowRight } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import UserPrompt from "./UserPrompt";
+import { Route, Redirect } from 'react-router'
 const axios = require('axios').default;
 
 
@@ -15,7 +16,7 @@ class Instructions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      subjectCookie: cookie.load("my cookie"),
+      subjectCookie: cookie.load("subjectUUID"),
       dimension: '',
       backchannel:'',
       selectedDegree:'',
@@ -24,9 +25,11 @@ class Instructions extends React.Component {
     };
   }
 
+ 
+
   componentDidMount() {
-    cookie.save("my cookie", uuidv4());
-    fetch("https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read")
+   
+    fetch("https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read?uid=" + this.state.subjectCookie)
     .then(data => data.json())
     .then(data => this.setState({ dimension: data.dimension, backchannel: data.backchannel, selectedDegree: data.selectedDegree, degree1Label: data.degree1Label, degree2Label: data.degree2Label  }))
     
@@ -39,6 +42,16 @@ class Instructions extends React.Component {
 }
 
   render() {
+
+
+
+    if (!this.state.subjectCookie) {
+      return <Redirect to="/ErrorPage" />
+    }
+
+
+
+
     return (
       <div>
         <header className="App-header-short">
@@ -65,7 +78,7 @@ class Instructions extends React.Component {
             For neutral just say "uh-huh" with no special emphasis.
             <br></br>
             <br></br>
-            When you are ready click the start button.  This is just a test run.
+            When you are ready click the start button. When finished speaking click the  "complete" button.  This is just a test run.
             <br></br>
             <br></br>
             </div>
@@ -80,7 +93,9 @@ class Instructions extends React.Component {
               selectedDegree={this.state.selectedDegree}
             ></UserPrompt>
   
-            <Button onClick={()=> this.getNextTask()}>Start </Button>
+            <Button className="myBody" onClick={()=> this.getNextTask()}>Start </Button>
+            
+            <Button onClick={()=> this.getNextTask()}>Complete </Button>
             <br></br>
             <br></br>
             <Link to="/Testing">
