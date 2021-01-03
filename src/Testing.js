@@ -29,8 +29,13 @@ class Testing extends React.Component {
       blobURL: "",
       isBlocked: false,
       trialID: "",  
-      trialStatus: false
+      trialStatus: false,
+      play: true
     };
+
+
+    this.audio = new Audio("http://soundbible.com/grab.php?id=989&type=mp3");
+
     this.getNextTask = this.getNextTask.bind(this);
     this.myUpload = this.myUpload.bind(this);
   }
@@ -61,6 +66,12 @@ class Testing extends React.Component {
   };
 
   componentDidMount() {
+
+
+    let audio = new Audio("http://soundbible.com/grab.php?id=989&type=mp3")
+    
+ 
+
     fetch(
       "https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read?uid=" +
         this.state.subjectCookie
@@ -104,16 +115,27 @@ class Testing extends React.Component {
   };
 
   start = () => {
+
+
+
     if (this.state.isBlocked) {
       console.log("Permission Denied");
     } else {
+
+      this.audio.play();
+      console.log("playing");
+      this.setState({ isRecording: true });
+      this.setState({ trialStatus: false });
+      this.audio.addEventListener('ended', () => {
+
       Mp3Recorder.start()
         .then(() => {
-          this.setState({ isRecording: true });
-          this.setState({ trialStatus: false });
+
         })
         .catch((e) => console.error(e));
-    }
+       
+    } );}
+    
   };
 
   stop = () => {
