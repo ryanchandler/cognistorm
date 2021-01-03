@@ -30,11 +30,12 @@ class Testing extends React.Component {
       isBlocked: false,
       trialID: "",  
       trialStatus: false,
-      play: true
+      play: true,
+      prompt:''
     };
 
 
-    this.audio = new Audio("http://soundbible.com/grab.php?id=989&type=mp3");
+    
 
     this.getNextTask = this.getNextTask.bind(this);
     this.myUpload = this.myUpload.bind(this);
@@ -68,7 +69,7 @@ class Testing extends React.Component {
   componentDidMount() {
 
 
-    let audio = new Audio("http://soundbible.com/grab.php?id=989&type=mp3")
+    //let audio = new Audio("http://soundbible.com/grab.php?id=989&type=mp3")
     
  
 
@@ -86,7 +87,8 @@ class Testing extends React.Component {
           degree2Label: data.degree2Label,
           uid: data.uid,
           trialID: data.trialID,
-        })
+          prompt: data.prompt
+        }, () => {this.audio = new Audio(this.state.prompt);})
       );
 
     cookie.save("CurrentlyAssignedTask", true);
@@ -127,6 +129,7 @@ class Testing extends React.Component {
       this.setState({ isRecording: true });
       this.setState({ trialStatus: false });
       this.audio.addEventListener('ended', () => {
+        console.log("prompt ended now recording");
 
       Mp3Recorder.start()
         .then(() => {
