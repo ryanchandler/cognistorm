@@ -12,6 +12,7 @@ import TestQuestion from './TestQuestion'
 import Consent from './Consent'
 import Testing from './Testing'
 import ErrorPage from './ErrorPage'
+import OptOut from './OptOut'
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
@@ -27,12 +28,13 @@ class App extends Component {
             <Route path="/HardwareTest" exact component={HardwareTest} />
             <Route path="/Record" exact component={Record} />
             <Route path="/SessionComplete" exact component={SessionComplete} />
-            
             <Route path="/TestQuestion" exact component={TestQuestion} />
             <Route path="/Consent" exact component={Consent} />
             <Route path="/upload" exact component={Upload} />
             <Route path="/Testing" exact component={Testing} />
             <Route path="/ErrorPage" exact component={ErrorPage} />
+            <Route path="/OptOut" exact component={OptOut} />
+            
             
 
       </BrowserRouter>
