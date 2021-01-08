@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import UserPrompt from "./UserPrompt";
 import MicRecorder from "mic-recorder-to-mp3";
-import SentencePrompt from "./SentencePrompt";
 
 const axios = require("axios").default;
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
@@ -88,9 +87,7 @@ class Testing extends React.Component {
           degree2Label: data.degree2Label,
           uid: data.uid,
           trialID: data.trialID,
-          prompt: data.prompt,
-          isBlocked:'',
-          selectedDegreeClause: data.selectedDegreeClause
+          prompt: data.prompt
         }, () => {this.audio = new Audio(this.state.prompt);})
       );
 
@@ -174,7 +171,7 @@ class Testing extends React.Component {
     return (
       <div>
         <header className="App-header-short">
-          <h1>Test in progress</h1>
+          <h1>Testing</h1>
         </header>
 
         <div className="myBody">
@@ -186,23 +183,9 @@ class Testing extends React.Component {
           >
             <div className="myLeftJustify"></div>
 
-            
-            
-            
-            <SentencePrompt 
-
-            backchannel={this.state.backchannel}
-            neutral="neutral"
-            degree1={this.state.degree1Label}
-            degree2={this.state.degree2Label}
-            selectedDegree={this.state.selectedDegree}
-            selectedDegreeClause={this.state.selectedDegreeClause}
-            
-            />
-            
-             
+            <b style={{ fontSize: "x-large" }}> {this.state.dimension} </b>
             <br></br>
-           <b style={{ fontSize: "xx-large" }}>  </b>
+            <b style={{ fontSize: "xx-large" }}> "{this.state.backchannel}" </b>
             <UserPrompt
               neutral="neutral"
               degree1={this.state.degree1Label}
@@ -216,7 +199,7 @@ class Testing extends React.Component {
               onClick={this.start}
               disabled={this.state.isRecording || this.state.trialStatus}
             >
-              Begin Task
+              Start Recording
             </Button>
 
             <Button
@@ -225,7 +208,7 @@ class Testing extends React.Component {
               onClick={this.stop}
               disabled={!this.state.isRecording}
             >
-              Task Complete
+              Stop Recording
             </Button>
             <br></br>
             <br></br>

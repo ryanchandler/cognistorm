@@ -53,6 +53,14 @@ color: darkgoldenrod;
   }
 }
 
+.btn{
+
+border:2px;
+border-color: blue;
+border-style: dotted;
+
+
+}
 
 .myBody{
   margin:20px;
