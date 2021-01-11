@@ -1,13 +1,11 @@
-import React from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import cookie from 'react-cookies'
-import { v4 as uuidv4 } from 'uuid';
-import { ArrowRight } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
-import { Form } from 'react-bootstrap';
-
-const axios = require('axios').default;
+import React from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import cookie from "react-cookies";
+import { v4 as uuidv4 } from "uuid";
+import { ArrowRight } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
+import { Form } from "react-bootstrap";
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -15,41 +13,30 @@ class Welcome extends React.Component {
     this.state = {
       subjectCookie: null,
       consented: false,
-      initialUUID: "",
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleConsent = this.handleConsent.bind(this);
   }
 
-  componentDidMount() {
-    var initialUUID = uuidv4();
-    this.state.initialUUID = initialUUID;
-
-    if (!cookie.load("subjectUUID")) {
-      cookie.save("subjectUUID", initialUUID);
+  handleConsent(evt) {
+    if (this.state.subjectCookie == null) {
+      var subjectUUID = uuidv4();
     }
-  }
 
-  handleChange(evt) {
+    this.setState(
+      {
+        subjectCookie: subjectUUID,
+      },
+      cookie.save("subjectUUID", subjectUUID)
+    );
+
     this.setState(
       {
         consented: evt.target.checked,
       },
       () => console.log(this.state.consented)
     );
-
     console.log("consented");
-
-    axios({
-      method: "put", //you can set what request you want to be
-      url:
-        "https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/WriteVoiceActorDatatoDatabase/?uid=" +
-        this.state.initialUUID,
-      data: { uid: "barney" },
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
   }
 
   render() {
@@ -79,13 +66,13 @@ class Welcome extends React.Component {
           The main features of the study is:
           <ul>
             <li>
-              Your voice will be recorded and stored and will be made public as a part of the research dataset.
+              Your voice will be recorded and stored and will be made public as
+              a part of the research dataset.
             </li>
             <li>
               No personally identifiable information will tie the recordings to
               your identity
             </li>
-
           </ul>
           <Form>
             <Form.Group controlId="consent">
@@ -95,14 +82,14 @@ class Welcome extends React.Component {
               <Form.Check
                 type="checkbox"
                 checked={this.state.consented}
-                onChange={this.handleChange}
+                onChange={this.handleConsent}
                 label="I consent to participate as described in the consent details in link provided above and the use of tracking cookies"
               />
             </Form.Group>
           </Form>
           <br></br>
           <Link to="/HardwareTest">
-            <ArrowRight size={80} />
+            <ArrowRight  style={this.state.consented ? {} : { display: 'none' }}  size={80} />
           </Link>
         </div>
       </div>

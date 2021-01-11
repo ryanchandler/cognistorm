@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import UserPrompt from "./UserPrompt";
 import MicRecorder from "mic-recorder-to-mp3";
+import SentencePrompt from "./SentencePrompt";
 
 const axios = require("axios").default;
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
@@ -23,7 +24,6 @@ class Instructions extends React.Component {
       selectedDegree: "",
       degree1Label: "",
       degree2Label: "",
-      currentTaskNumber: 0,
       uid: "",
       isRecording: false,
       blobURL: "",
@@ -31,7 +31,8 @@ class Instructions extends React.Component {
       trialID: "",  
       trialStatus: false,
       play: true,
-      prompt:''
+      prompt:'',
+      currentTaskNumber: cookie.load("currentTaskNumber"),
     };
 
 
@@ -68,20 +69,33 @@ class Instructions extends React.Component {
 
   componentDidMount() {
 
-  
- 
+ if (!cookie.load("currentTaskNumber"))
+ {
+  cookie.save("currentTaskNumber", 0)
 
+
+ }
+
+    fetch(
+      "https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read?uid=" +
+        this.state.subjectCookie
+    )
+      .then((data) => data.json())
+      .then((data) =>
         this.setState({
-          dimension: 'agreement',
-          backchannel: 'uh-huh',
-          selectedDegree: 1,
-          degree1Label: "agree a little",
-          degree2Label: "agree a lot",
-          uid: "testing",
-          trialID: '',
-          prompt: 'https://cognistorm.s3.amazonaws.com/prompts/prompt_1.mp3'
+          dimension: data.dimension,
+          backchannel: data.backchannel,
+          selectedDegree: data.selectedDegree,
+          degree1Label: data.degree1Label,
+          degree2Label: data.degree2Label,
+          uid: data.uid,
+          trialID: data.trialID,
+          prompt: data.prompt,
+          isBlocked:'',
+          isPlayingAudioPromt:'',
+          selectedDegreeClause: data.selectedDegreeClause
         }, () => {this.audio = new Audio(this.state.prompt);})
- 
+      );
 
     cookie.save("CurrentlyAssignedTask", true);
 
@@ -101,10 +115,7 @@ class Instructions extends React.Component {
   getNextTask = (e) => {
     e.preventDefault();
 
-    this.setState(
-      { currentTaskNumber: this.state.currentTaskNumber + 1 },
-      console.log(this.state.currentTaskNumber)
-    );
+    
     window.location.reload(false)
   };
 
@@ -118,10 +129,11 @@ class Instructions extends React.Component {
 
       this.audio.play();
       console.log("playing");
-      this.setState({ isRecording: true });
+      this.setState({ isPlayingAudioPromt: true });
       this.setState({ trialStatus: false });
       this.audio.addEventListener('ended', () => {
         console.log("prompt ended now recording");
+        this.setState({ isRecording: true });
 
       Mp3Recorder.start()
         .then(() => {
@@ -134,6 +146,15 @@ class Instructions extends React.Component {
   };
 
   stop = () => {
+
+
+
+ var currentTaskNumber = cookie.load("currentTaskNumber");   
+
+cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
+      
+   
+
     Mp3Recorder.stop()
       .getMp3()
       .then(([buffer, blob]) => {
@@ -149,6 +170,11 @@ class Instructions extends React.Component {
         this.setState({ trialStatus: true });
       })
       .catch((e) => console.log(e));
+
+
+
+
+
   };
 
   render() {
@@ -156,12 +182,14 @@ class Instructions extends React.Component {
       return <Redirect to="/ErrorPage" />;
     }
 
-
+    if (this.state.currentTaskNumber >= 31) {
+      return <Redirect to="/SessionComplete" />;
+    }
 
     return (
       <div>
         <header className="App-header-short">
-          <h1>Example Task</h1>
+          <h1>Practice example</h1>
         </header>
 
         <div className="myBody">
@@ -173,9 +201,23 @@ class Instructions extends React.Component {
           >
             <div className="myLeftJustify"></div>
 
-            <b style={{ fontSize: "x-large" }}> {this.state.dimension} </b>
+            
+            
+            
+            <SentencePrompt 
+
+            backchannel={this.state.backchannel}
+            neutral="neutral"
+            degree1={this.state.degree1Label}
+            degree2={this.state.degree2Label}
+            selectedDegree={this.state.selectedDegree}
+            selectedDegreeClause={this.state.selectedDegreeClause}
+            
+            />
+            
+             
             <br></br>
-            <b style={{ fontSize: "xx-large" }}> "{this.state.backchannel}" </b>
+           <b style={{ fontSize: "xx-large" }}>  </b>
             <UserPrompt
               neutral="neutral"
               degree1={this.state.degree1Label}
@@ -187,9 +229,9 @@ class Instructions extends React.Component {
               style={{ width: "150px", margin: "20px" }}
               className="button"
               onClick={this.start}
-              disabled={this.state.isRecording || this.state.trialStatus}
+              disabled={this.state.isPlayingAudioPromt || this.state.trialStatus}
             >
-              Start Recording
+              Begin Task
             </Button>
 
             <Button
@@ -198,14 +240,16 @@ class Instructions extends React.Component {
               onClick={this.stop}
               disabled={!this.state.isRecording}
             >
-              Stop Recording
+              Task Complete
             </Button>
             <br></br>
             <br></br>
             <Link to="/Testing">
               <ArrowRight size={80} onClick={this.getNextTask}  style={this.state.trialStatus ? {} : { display: 'none' }}/>
             </Link>
+            <div>Remaining tasks: {30 - this.state.currentTaskNumber } </div>
           </div>
+         
         </div>
       </div>
     );

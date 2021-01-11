@@ -14,7 +14,7 @@ const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 // This will upload the file after having read it
 const upload = (file) => {
   fetch(
-    "https://huzujy3mjd.execute-api.us-east-1.amazonaws.com/dev/storeaudiotos3",
+    "https://huzujy3mjd.execute-api.us-east-1.amazonaws.com/dev/storeaudiotos3?trialID=" + cookie.load("subjectUUID") + "_SubjectVoiceSample",
     {
       // Your POST endpoint
       method: "POST",

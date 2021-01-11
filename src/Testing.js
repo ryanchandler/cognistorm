@@ -1,9 +1,9 @@
 import React from "react";
-import { Route, Redirect } from "react-router";
+import { Redirect } from "react-router";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import cookie from "react-cookies";
-import { v4 as uuidv4 } from "uuid";
+
 import { ArrowRight } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
@@ -11,7 +11,7 @@ import UserPrompt from "./UserPrompt";
 import MicRecorder from "mic-recorder-to-mp3";
 import SentencePrompt from "./SentencePrompt";
 
-const axios = require("axios").default;
+
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 
 class Testing extends React.Component {
@@ -24,7 +24,6 @@ class Testing extends React.Component {
       selectedDegree: "",
       degree1Label: "",
       degree2Label: "",
-      currentTaskNumber: 0,
       uid: "",
       isRecording: false,
       blobURL: "",
@@ -32,7 +31,8 @@ class Testing extends React.Component {
       trialID: "",  
       trialStatus: false,
       play: true,
-      prompt:''
+      prompt:'',
+      currentTaskNumber: cookie.load("currentTaskNumber"),
     };
 
 
@@ -42,6 +42,12 @@ class Testing extends React.Component {
     this.myUpload = this.myUpload.bind(this);
   }
 
+
+
+
+
+
+  
   // This will upload the file after having read it
   myUpload = ({ file }) => {
     fetch(
@@ -67,12 +73,18 @@ class Testing extends React.Component {
     console.log(this.state.trialID);
   };
 
+
+
+
+
   componentDidMount() {
-
-
-    //let audio = new Audio("http://soundbible.com/grab.php?id=989&type=mp3")
     
- 
+ if (!cookie.load("currentTaskNumber"))
+ {
+  cookie.save("currentTaskNumber", 0)
+
+
+ }
 
     fetch(
       "https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read?uid=" +
@@ -90,6 +102,7 @@ class Testing extends React.Component {
           trialID: data.trialID,
           prompt: data.prompt,
           isBlocked:'',
+          isPlayingAudioPromt:'',
           selectedDegreeClause: data.selectedDegreeClause
         }, () => {this.audio = new Audio(this.state.prompt);})
       );
@@ -112,10 +125,7 @@ class Testing extends React.Component {
   getNextTask = (e) => {
     e.preventDefault();
 
-    this.setState(
-      { currentTaskNumber: this.state.currentTaskNumber + 1 },
-      console.log(this.state.currentTaskNumber)
-    );
+    
     window.location.reload(false)
   };
 
@@ -129,10 +139,11 @@ class Testing extends React.Component {
 
       this.audio.play();
       console.log("playing");
-      this.setState({ isRecording: true });
+      this.setState({ isPlayingAudioPromt: true });
       this.setState({ trialStatus: false });
       this.audio.addEventListener('ended', () => {
         console.log("prompt ended now recording");
+        this.setState({ isRecording: true });
 
       Mp3Recorder.start()
         .then(() => {
@@ -145,6 +156,15 @@ class Testing extends React.Component {
   };
 
   stop = () => {
+
+
+
+ var currentTaskNumber = cookie.load("currentTaskNumber");   
+
+cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
+      
+   
+
     Mp3Recorder.stop()
       .getMp3()
       .then(([buffer, blob]) => {
@@ -160,9 +180,16 @@ class Testing extends React.Component {
         this.setState({ trialStatus: true });
       })
       .catch((e) => console.log(e));
+
+
+
+
+
   };
 
   render() {
+
+    
     if (!this.state.subjectCookie) {
       return <Redirect to="/ErrorPage" />;
     }
@@ -214,7 +241,7 @@ class Testing extends React.Component {
               style={{ width: "150px", margin: "20px" }}
               className="button"
               onClick={this.start}
-              disabled={this.state.isRecording || this.state.trialStatus}
+              disabled={this.state.isPlayingAudioPromt || this.state.trialStatus}
             >
               Begin Task
             </Button>
@@ -232,7 +259,9 @@ class Testing extends React.Component {
             <Link to="/Testing">
               <ArrowRight size={80} onClick={this.getNextTask}  style={this.state.trialStatus ? {} : { display: 'none' }}/>
             </Link>
+             <div>Remaining tasks: {30 - this.state.currentTaskNumber } </div>
           </div>
+         
         </div>
       </div>
     );

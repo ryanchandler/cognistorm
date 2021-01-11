@@ -37,7 +37,7 @@ class SessionComplete extends React.Component {
           <br></br>
           <br></br>
           <input
-            style={{ width: "450px", border: "none", fontSize: "x-large" }}
+            style={{ width: "460px", border: "none", fontSize: "x-large" }}
             id="myCode"
             value={this.state.subjectCookie}
           ></input>

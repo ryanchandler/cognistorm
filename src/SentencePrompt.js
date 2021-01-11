@@ -29,7 +29,7 @@ class SentencePrompt extends React.Component {
     return (
       <div style={{ fontSize: "large" }} >
         <br></br>
-        After the beep say <b style={{ fontSize: "large" }}>  "{this.props.backchannel}" </b> like you  <b> 
+        After the beep say <b style={{ fontSize: "large" }}>  "{this.props.backchannel}" </b> <p></p>like you  <b> 
         { " " + this.props.selectedDegreeClause + " "} </b> what the speaker says.
       </div>
     );
