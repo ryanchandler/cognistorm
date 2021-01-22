@@ -34,7 +34,7 @@ class Instructions extends React.Component {
       prompt:'',
       currentTaskNumber: cookie.load("currentTaskNumber"),
     };
-
+    
 
     
 
@@ -69,47 +69,24 @@ class Instructions extends React.Component {
 
   componentDidMount() {
 
- if (!cookie.load("currentTaskNumber"))
- {
-  cookie.save("currentTaskNumber", 0)
 
-
- }
-
-    fetch(
-      "https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read?uid=" +
-        this.state.subjectCookie
-    )
-      .then((data) => data.json())
-      .then((data) =>
+   
         this.setState({
-          dimension: data.dimension,
-          backchannel: data.backchannel,
-          selectedDegree: data.selectedDegree,
-          degree1Label: data.degree1Label,
-          degree2Label: data.degree2Label,
-          uid: data.uid,
-          trialID: data.trialID,
-          prompt: data.prompt,
-          isBlocked:'',
+          dimension: "interest",
+          backchannel: "uh-huh",
+          selectedDegree:2,
+          degree1Label: 'a little interested',
+          degree2Label: 'very interested',
+          uid: '11111111-2222-3333-4444-5555555',
+          trialID: 'practice',
+          prompt: 'https://cognistorm.s3.amazonaws.com/prompts/prompt_1.mp3',
+          isBlocked:false,
           isPlayingAudioPromt:'',
-          selectedDegreeClause: data.selectedDegreeClause
-        }, () => {this.audio = new Audio(this.state.prompt);})
-      );
-
-    cookie.save("CurrentlyAssignedTask", true);
-
-    navigator.getUserMedia(
-      { audio: true },
-      () => {
-        console.log("Permission Granted");
-        this.setState({ isBlocked: false });
-      },
-      () => {
-        console.log("Permission Denied");
-        this.setState({ isBlocked: true });
-      }
-    );
+          selectedDegreeClause: 'are very interested in',
+          
+        })
+     
+        this.audio = new Audio('https://cognistorm.s3.amazonaws.com/prompts/prompt_1.mp3')
   }
 
   getNextTask = (e) => {
@@ -166,7 +143,7 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
           lastModified: Date.now(),
         });
 
-        this.myUpload({ file });
+        
         this.setState({ trialStatus: true });
       })
       .catch((e) => console.log(e));
@@ -245,9 +222,9 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
             <br></br>
             <br></br>
             <Link to="/Testing">
-              <ArrowRight size={80} onClick={this.getNextTask}  style={this.state.trialStatus ? {} : { display: 'none' }}/>
+              <ArrowRight size={80}  style={this.state.trialStatus ? {} : { display: 'none' }}/>
             </Link>
-            <div>Remaining tasks: {30 - this.state.currentTaskNumber } </div>
+            
           </div>
          
         </div>

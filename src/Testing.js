@@ -87,7 +87,7 @@ class Testing extends React.Component {
  }
 
     fetch(
-      "https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read?uid=" +
+      "https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read?directive=getTask&uid=" +
         this.state.subjectCookie
     )
       .then((data) => data.json())
@@ -182,7 +182,11 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
       .catch((e) => console.log(e));
 
 
-
+      fetch(
+        "https://16pjyerzdf.execute-api.us-east-1.amazonaws.com/dev/read?directive=completeTask&uid=" +
+          this.state.uid + "&trialID=" +  this.state.trialID
+      )
+        
 
 
   };
