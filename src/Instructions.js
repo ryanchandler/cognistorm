@@ -33,6 +33,7 @@ class Instructions extends React.Component {
       play: true,
       prompt:'',
       currentTaskNumber: cookie.load("currentTaskNumber"),
+      InstructionSampleURL: "https://cognistorm.s3.amazonaws.com/prompts/SubjectInstructions.mp3",
     };
     
 
@@ -166,7 +167,7 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
     return (
       <div>
         <header className="App-header-short">
-          <h1>Practice example</h1>
+          <h1>Instructions</h1>
         </header>
 
         <div className="myBody">
@@ -176,9 +177,50 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
               width: "600px",
             }}
           >
-            <div className="myLeftJustify"></div>
+            <div className="myLeftJustify">
 
-            
+          
+<h4>What are we testing? </h4>
+
+As speakers we can sometimes say a word in different ways to communicate different meanings.  As an example, if you play the clip below you will hear the phrase "It was cold" with three different inflections. This is an example where the word "cold" might be spoken differently if it was really cold rather than just a little cold.
+
+<br></br>
+          <div
+            style={{
+              margin: "50px",
+              justifyContent: "center",
+              alignItems: "center",
+              display: "flex",
+            }}
+          >
+            <audio src={this.state.InstructionSampleURL} controls="button" />
+          </div>
+
+<p></p>
+
+<h4>How to complete the exercises </h4>
+
+Below is an example of the user interface you will use.  It shows what word you will say and an indication of how to say it.
+<p></p>
+
+When you are ready to begin you will press the "Begin Task" button.  You will hear an audio prompt of someone making a random statement. 
+
+<b> Speak the word in the manner indicated as soon as you see the green "now recording" indicator.</b>
+<p></p>
+
+When you are finished speaking select the "Task Complete" button.  An arrow will appears to take you to the next page where the process will be repreated for a total of 60 trials. <b>This enagagement should require 20-30 minutes and should be performed on one sitting if possible. </b>
+<p></p>
+
+When your trials are complete you will be given the redemoption code to be pasted back in the Mechanical Turk form that lead you here.
+
+<p></p>
+
+
+ For neutral responses just say with no special empahsis or attitude.
+ <p></p>
+<h4>Try a practice example </h4>
+<hr/>
+ </div>
             
             
             <SentencePrompt 
@@ -201,6 +243,7 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
               degree2={this.state.degree2Label}
               selectedDegree={this.state.selectedDegree}
             ></UserPrompt>
+            <div style={{ minHeight: '50px' }}> { this.state.isRecording ? <b style={{ color: 'green' }} >Now Recording</b> : null }</div>
 
             <Button
               style={{ width: "150px", margin: "20px" }}
@@ -219,11 +262,17 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
             >
               Task Complete
             </Button>
+            
             <br></br>
+           
             <br></br>
             <Link to="/Testing">
               <ArrowRight size={80}  style={this.state.trialStatus ? {} : { display: 'none' }}/>
             </Link>
+
+            
+
+            
             
           </div>
          

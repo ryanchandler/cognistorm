@@ -198,7 +198,7 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
       return <Redirect to="/ErrorPage" />;
     }
 
-    if (this.state.currentTaskNumber >= 31) {
+    if (this.state.currentTaskNumber >= 61) {
       return <Redirect to="/SessionComplete" />;
     }
 
@@ -240,7 +240,7 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
               degree2={this.state.degree2Label}
               selectedDegree={this.state.selectedDegree}
             ></UserPrompt>
-
+<div style={{ minHeight: '50px' }}> { this.state.isRecording ? <b style={{ color: 'green' }} >Now Recording</b> : null }</div>
             <Button
               style={{ width: "150px", margin: "20px" }}
               className="button"
@@ -260,10 +260,11 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
             </Button>
             <br></br>
             <br></br>
+            <div>Remaining tasks: {60 - this.state.currentTaskNumber } </div>
             <Link to="/Testing">
               <ArrowRight size={80} onClick={this.getNextTask}  style={this.state.trialStatus ? {} : { display: 'none' }}/>
             </Link>
-             <div>Remaining tasks: {30 - this.state.currentTaskNumber } </div>
+            
           </div>
          
         </div>

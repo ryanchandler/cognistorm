@@ -161,10 +161,25 @@ class HardwareTest extends React.Component {
             <audio src={this.state.blobURL} controls="button" />
           </div>
           If the sound is <b>too soft</b> speak louder or move the microphone
-          closer to your mouth or increase mic level in your OS<p></p>
+          closer to your mouth or increase mic level in your OS<p>
+
+<p></p>
+          <a href="https://support.shadowhealth.com/hc/en-us/articles/360007282013-Change-microphone-volume-Windows-10-" target="_blank">Set recording level - Windows (external tutorial)</a>
+
+      
+            <br>
+            
+            </br>
+
+
+            
+          <a href="https://hirevuesupport.zendesk.com/hc/en-us/articles/360028433311-Microphone-Settings-Mac-Apple-" target="_blank">Set recording level - Mac (external tutorial)</a>
+
+            
+          </p>
           If the sound is <b>too loud or distorted </b>
           move your microphone away from your mouth or reduce mic level in your
-          OS. <br></br>
+          OS or both. You should not hear your breath causing noise to the recording. <br></br>
           <p></p>
           Repeat steps one through four until you are happy with the recording
           level. Then proceed using the arrow below.
