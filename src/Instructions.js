@@ -196,11 +196,28 @@ As speakers we can sometimes say a word in different ways to communicate differe
             <audio src={this.state.InstructionSampleURL} controls="button" />
           </div>
 
-<p></p>
 
+
+          <p></p>
+<p></p>
+<h4>Understanding the dimensions </h4>
+<p></p>
+<b>Agreement</b> - You support the statement of the speaker.
+<p></p>
+<b>Belief</b> - You think that what the speaker said is true.
+<p></p>
+<b>Concern</b> - You are taking seriously and are invested in what the speaker says.
+<p></p>
+<b>Interest</b> - You find what the speaker said to be engageing.
+<p></p>
+<b>Understanding</b> - You comprehend what the speaker is saying.
+<p></p>
+<b>Neutral</b> - Speak the indicated word with no special empahsis or attitude, as though you were just reading the word aloud.
+<p></p>
+<p></p>
 <h4>How to complete the exercises </h4>
 
-Below is an example of the user interface you will use.  It shows what word you will say and an indication of how to say it.
+Below is an example of the user interface you will use.  It shows what word you will say and an indication of how to say it. Without exaggerating, you want to speak the word in a way that clearly indicates the attitude described.
 <p></p>
 
 When you are ready to begin you will press the "Begin Task" button.  You will hear an audio prompt of someone making a random statement. 
@@ -216,7 +233,8 @@ When your trials are complete you will be given the redemoption code to be paste
 <p></p>
 
 
- For neutral responses just say with no special empahsis or attitude.
+
+ <p></p>
  <p></p>
 <h4>Try a practice example </h4>
 <hr/>
