@@ -3,7 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import cookie from "react-cookies";
 import { v4 as uuidv4 } from "uuid";
-import { ArrowRight } from "react-bootstrap-icons";
+import { ArrowRight, MicFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
@@ -76,22 +76,23 @@ class Welcome extends React.Component {
             alignItems: "center",
           }}
         >
-
-<b> YOU ARE REQUIRED TO HAVE A HEADSET MICROPHONE AND MOUSE TO COMPLETE THIS TASK</b>
+          <h4> We are excited that you have decided to participate.</h4>
+<p></p>
+<MicFill  size={80} />
+<b> You will need to use a headset microphone and mouse to complete this task</b>
 <p></p>
           This is a research study being conducted by researchers from the
           University of Illinois. The goal of the study is to teach computers to
           recognize subtle differences in meaning based on how words are spoken
           (voiced, inflected).
           <p></p>
-          You will be asked to speak words "yeah" and "uh-huh" into your
-          computer's headset microphone. You will be propted to say each word
-          with a different characterizartion, or attitude. For example you may
+          You will be asked to speak either the word "yeah" or "uh-huh" into your
+          computer's headset microphone with a different characterizartion, or attitude. For example you may
           be asked to say "uh-huh" as though you are very interesed or
           uninterested.
           <p></p>
           <b>
-          The main features of the study are:</b>
+          Two main features of the study to consider are:</b>
           <ul>
             <li>
               Your voice will be recorded and stored and will be made public as
@@ -106,11 +107,9 @@ class Welcome extends React.Component {
 
 
 
-          <b> SOCIAL BEHAVIORAL RESEARCH CONSENT FORM  (please indicate consent at the botom of this form)</b> 
-
-<p></p>
-Research Information and Consent for Participation in Social Behavioral Research
-
+<p></p><h3>
+Consent for Participation in Social Behavioral Research
+</h3>
 
 <p></p>
 <b>
@@ -149,7 +148,7 @@ The goal of this research is to discover to what extent the addition of verbal f
 <p></p>
 <b>What procedures are involved? </b>
 
-This research will be performed via the Mechanical Turk website, mturk.com. The session will take approximately 30-40 minutes. The study procedures are:
+This research will be performed via the Mechanical Turk website, mturk.com. The session will take approximately 25-35 minutes. The study procedures are:
 Experiment #1: Study participants will be solicited for participation through the Mechanical Turk website, mturk.com. The participant will be provided a brief written overview of the task and be made aware that audio recordings will be made of their responses and that they may decline any question without explanations or negative repercussions. The participant will also see this consent form and be provided with an electronic signature field and a check box on the website to indicate consent .The subject will hear up to 120 statements through headphones. The subject will wear a headset microphone and will provide verbal responses of either “uh-huh” or “yeah” in response to each statement. The participant will be asked to modulate their response in a way that signals some level of interest, agreement, understanding, belief, concern etc. The participant will be shown a scale on the screen that places each utterance into a scale such as, “slightly interested”, “very interested”, “neutral”. The participant will attempt to produce a “uh-huh” or “yeah” that matches this level. Their responses will be recorded.
 <p></p>
 

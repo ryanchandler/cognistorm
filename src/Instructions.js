@@ -82,7 +82,7 @@ class Instructions extends React.Component {
           trialID: 'practice',
           prompt: 'https://cognistorm.s3.amazonaws.com/prompts/prompt_1.mp3',
           isBlocked:false,
-          isPlayingAudioPromt:'',
+          isPlayingAudioPrompt:'',
           selectedDegreeClause: 'are very interested in',
           
         })
@@ -107,7 +107,7 @@ class Instructions extends React.Component {
 
       this.audio.play();
       console.log("playing");
-      this.setState({ isPlayingAudioPromt: true });
+      this.setState({ isPlayingAudioPrompt: true });
       this.setState({ trialStatus: false });
       this.audio.addEventListener('ended', () => {
         console.log("prompt ended now recording");
@@ -208,11 +208,11 @@ As speakers we can sometimes say a word in different ways to communicate differe
 <p></p>
 <b>Concern</b> - You are taking seriously and are invested in what the speaker says.
 <p></p>
-<b>Interest</b> - You find what the speaker said to be engageing.
+<b>Interest</b> - You find what the speaker said to be engaging.
 <p></p>
 <b>Understanding</b> - You comprehend what the speaker is saying.
 <p></p>
-<b>Neutral</b> - Speak the indicated word with no special empahsis or attitude, as though you were just reading the word aloud.
+<b>Neutral</b> - Speak the indicated word with no special emphasis or attitude, as though you were just reading the word aloud.
 <p></p>
 <p></p>
 <h4>How to complete the exercises </h4>
@@ -222,13 +222,13 @@ Below is an example of the user interface you will use.  It shows what word you 
 
 When you are ready to begin you will press the "Begin Task" button.  You will hear an audio prompt of someone making a random statement. 
 
-<b> Speak the word in the manner indicated as soon as you see the green "now recording" indicator.</b>
+<b> Speak the word in the manner indicated as soon as you see the green "Now Recording" indicator appear.</b>
 <p></p>
 
-When you are finished speaking select the "Task Complete" button.  An arrow will appears to take you to the next page where the process will be repreated for a total of 60 trials. <b>This enagagement should require 20-30 minutes and should be performed on one sitting if possible. </b>
+When you are finished speaking select the "Task Complete" button.  An arrow will appear to take you to the next page where the process will be repreated for a total of 60 trials. <b>This enagagement should require 20-30 minutes and should be performed on one sitting if possible. </b>
 <p></p>
 
-When your trials are complete you will be given the redemoption code to be pasted back in the Mechanical Turk form that lead you here.
+When your trials are complete you will be given the redemption code to be pasted back in the Mechanical Turk page that led you here.
 
 <p></p>
 
@@ -267,7 +267,7 @@ When your trials are complete you will be given the redemoption code to be paste
               style={{ width: "150px", margin: "20px" }}
               className="button"
               onClick={this.start}
-              disabled={this.state.isPlayingAudioPromt || this.state.trialStatus}
+              disabled={this.state.isPlayingAudioPrompt || this.state.trialStatus}
             >
               Begin Task
             </Button>

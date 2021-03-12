@@ -184,6 +184,9 @@ class HardwareTest extends React.Component {
           Repeat steps one through four until you are happy with the recording
           level. Then proceed using the arrow below.
           <br></br>
+          <p></p>
+<b>Participants will only be compensated for usable recodings, noisy or distorted recording will be rejected.</b>
+
           <div
             style={{
               margin: "50px",
