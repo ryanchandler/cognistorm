@@ -86,6 +86,8 @@ class Testing extends React.Component {
 
 
   componentDidMount() {
+
+    window.scrollTo(0, 0)
     
  if (!cookie.load("currentTaskNumber"))
  {

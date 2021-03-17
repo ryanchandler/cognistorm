@@ -85,6 +85,9 @@ class HardwareTest extends React.Component {
   };
 
   componentDidMount() {
+
+
+    window.scrollTo(0, 0)
     navigator.getUserMedia(
       { audio: true },
       () => {

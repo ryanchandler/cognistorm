@@ -71,6 +71,8 @@ class Instructions extends React.Component {
   componentDidMount() {
 
 
+      window.scrollTo(0, 0)
+    
    
         this.setState({
           dimension: "interest",
@@ -222,10 +224,10 @@ Below is an example of the user interface you will use.  It shows what word you 
 
 When you are ready to begin you will press the "Begin Task" button.  You will hear an audio prompt of someone making a random statement. 
 
-<b> Speak the word in the manner indicated as soon as you see the green "Now Recording" indicator appear.</b>
+<b> Speak the word in the manner indicated as soon as you see the green "Speak Now" indicator appear.</b>
 <p></p>
 
-When you are finished speaking select the "Task Complete" button.  An arrow will appear to take you to the next page where the process will be repreated for a total of 60 trials. <b>This enagagement should require 20-30 minutes and should be performed on one sitting if possible. </b>
+When you are finished speaking select the "Task Complete" button.  An arrow will appear to take you to the next page where the process will be repreated for a total of 60 trials. <b>This enagagment should require 20-30 minutes and should be performed on one sitting if possible. </b>
 <p></p>
 
 When your trials are complete you will be given the redemption code to be pasted back in the Mechanical Turk page that led you here.
