@@ -17,6 +17,14 @@ const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 class Testing extends React.Component {
   constructor(props) {
     super(props);
+
+
+
+
+
+
+
+    
     this.state = {
       subjectCookie: cookie.load("subjectUUID"),
       dimension: "",
@@ -102,7 +110,7 @@ class Testing extends React.Component {
           trialID: data.trialID,
           prompt: data.prompt,
           isBlocked:'',
-          isPlayingAudioPromt:'',
+          isPlayingAudioPrompt:'',
           selectedDegreeClause: data.selectedDegreeClause
         }, () => {this.audio = new Audio(this.state.prompt);})
       );
@@ -139,7 +147,7 @@ class Testing extends React.Component {
 
       this.audio.play();
       console.log("playing");
-      this.setState({ isPlayingAudioPromt: true });
+      this.setState({ isPlayingAudioPrompt: true });
       this.setState({ trialStatus: false });
       this.audio.addEventListener('ended', () => {
         console.log("prompt ended now recording");
@@ -240,12 +248,13 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
               degree2={this.state.degree2Label}
               selectedDegree={this.state.selectedDegree}
             ></UserPrompt>
-<div style={{ minHeight: '50px' }}> { this.state.isRecording ? <b style={{ color: 'green' }} >Now Recording</b> : null }</div>
+            <div style={{ minHeight: '50px' }}> { !this.state.isRecording ? <b style={{ color: 'red' , fontSize:'x-large'}} >Wait to speak</b> : null }</div>
+            <div style={{ minHeight: '50px' }}> { this.state.isRecording ? <b style={{ color: 'green' , fontSize:'x-large'}} >Speak Now</b> : null }</div>
             <Button
               style={{ width: "150px", margin: "20px" }}
               className="button"
               onClick={this.start}
-              disabled={this.state.isPlayingAudioPromt || this.state.trialStatus}
+              disabled={this.state.isPlayingAudioPrompt || this.state.trialStatus}
             >
               Begin Task
             </Button>

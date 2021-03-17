@@ -24,25 +24,25 @@ class UserPrompt extends React.Component {
 
   renderNeutralCircle = () => {
     if (this.props.selectedDegree == 0) {
-      return <circle cx="100" cy="103" r="25" fill="green" />;
+      return <circle cx="200" cy="103" r="25" fill="green" />;
     } else {
-      return <circle cx="100" cy="103" r="20" />;
+      return <circle cx="200" cy="103" r="20" />;
     }
   };
 
   renderDegree1Circle = () => {
     if (this.props.selectedDegree == 1) {
-      return <circle cx="400" cy="103" r="25" fill="green" />;
+      return <circle cx="600" cy="103" r="25" fill="green" />;
     } else {
-      return <circle cx="400" cy="103" r="20" />;
+      return <circle cx="600" cy="103" r="20" />;
     }
   };
 
   renderDegree2Circle = () => {
     if (this.props.selectedDegree == 2) {
-      return <circle cx="700" cy="103" r="25" fill="green" />;
+      return <circle cx="1000" cy="103" r="25" fill="green" />;
     } else {
-      return <circle cx="700" cy="103" r="20" />;
+      return <circle cx="1000" cy="103" r="20" />;
     }
   };
 
@@ -50,35 +50,35 @@ class UserPrompt extends React.Component {
     return (
       <div className="myBody">
         <svg
-          width="12cm"
-          height="4cm"
-          viewBox="0 0 900 150"
+          width="16cm"
+          height="3cm"
+          viewBox="0 0 1200 150"
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
         >
           <desc>Likert Scale for Selection</desc>
 
           <rect
-            x="100"
+            x="200"
             y="100"
-            width="600"
+            width="800"
             height="6"
             fill="black"
             stroke="black"
-            stroke-width="1"
+            strokeWidth="1"
           />
 
           {this.renderNeutralCircle()}
           {this.renderDegree1Circle()}
           {this.renderDegree2Circle()}
 
-          <text x="100" y="180" font-size="x-large" text-anchor="middle">
+          <text x="200" y="180" font-size="xx-large" text-anchor="middle">
             {this.props.neutral}
           </text>
-          <text x="400" y="180" font-size="x-large" text-anchor="middle">
+          <text x="600" y="180" font-size="xx-large" text-anchor="middle">
             {this.props.degree1}
           </text>
-          <text x="700" y="180" font-size="x-large" text-anchor="middle">
+          <text x="1000" y="180" font-size="xx-large" text-anchor="middle">
             {this.props.degree2}
           </text>
         </svg>

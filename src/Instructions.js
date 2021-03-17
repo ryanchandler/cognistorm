@@ -129,7 +129,7 @@ class Instructions extends React.Component {
 
  var currentTaskNumber = cookie.load("currentTaskNumber");   
 
-cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
+
       
    
 
@@ -261,7 +261,8 @@ When your trials are complete you will be given the redemption code to be pasted
               degree2={this.state.degree2Label}
               selectedDegree={this.state.selectedDegree}
             ></UserPrompt>
-            <div style={{ minHeight: '50px' }}> { this.state.isRecording ? <b style={{ color: 'green' }} >Now Recording</b> : null }</div>
+            <div style={{ minHeight: '50px' }}> { !this.state.isRecording ? <b style={{ color: 'red' , fontSize:'x-large'}} >Wait to speak</b> : null }</div>
+            <div style={{ minHeight: '50px' }}> { this.state.isRecording ? <b style={{ color: 'green' , fontSize:'x-large'}} >Speak Now</b> : null }</div>
 
             <Button
               style={{ width: "150px", margin: "20px" }}
