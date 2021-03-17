@@ -208,7 +208,7 @@ cookie.save("currentTaskNumber", parseInt(currentTaskNumber, 10) + 1) ;
       return <Redirect to="/ErrorPage" />;
     }
 
-    if (this.state.currentTaskNumber >= 61) {
+    if (this.state.currentTaskNumber >= 60) {
       return <Redirect to="/SessionComplete" />;
     }
 
