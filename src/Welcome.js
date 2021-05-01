@@ -80,6 +80,9 @@ class Welcome extends React.Component {
 <p></p>
 <MicFill  size={80} />
 <b> You will need to use a headset microphone and mouse to complete this task</b>
+<br></br>
+<b> Please use Google's Chrome browser to complete.</b>
+
 <p></p>
           This is a research study being conducted by researchers from the
           University of Illinois. The goal of the study is to teach computers to
