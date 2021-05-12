@@ -76,7 +76,7 @@ class Instructions extends React.Component {
    
         this.setState({
           dimension: "interest",
-          backchannel: "uh-huh",
+          backchannel: "yeah",
           selectedDegree:2,
           degree1Label: 'a little interested',
           degree2Label: 'very interested',
