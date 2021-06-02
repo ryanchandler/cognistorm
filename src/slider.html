@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Slider - Default functionality</title>
+  <link rel="stylesheet" href="./jquery-ui-1.12.1/jquery-ui.css">
+  <link rel="stylesheet" href="./jquery-ui-1.12.1/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $( function() {
+
+      $('#slider').on('click',function(e){
+    e.stopImmediatePropagation();
+    return false;
+});
+
+
+
+
+
+
+
+      $( "#slider" ).slider({
+        value:0,
+        min: -100,
+        max: 100,
+        step: 1,
+        start: startTime,
+        stop: stopTime,
+        behaviour: "none",
+        slide: function( event, ui ) {
+          $( "#amount" ).val( "$" + ui.value );
+          console.log( ui.value);
+        }
+      });
+
+
+      function startTime() {
+        console.log('start');
+        theStartTime = new Date();
+                
+                
+            }
+
+      function stopTime() {
+        console.log( 'stop');
+        theEndTime = new Date();
+        var timeDiff = theEndTime - theStartTime; //in ms
+        // strip the ms
+        timeDiff /= 1000;
+        console.log( 'stat took ' + timeDiff + ' seconds' );
+          
+      }
+
+
+
+
+      $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+    } );
+    </script>
+</head>
+<body>
+  <div class="center">
+    
+    <div id="slider"></div>
+    <img class="scale" src="./images/scale_interest.png" alt="scale" >
+</div>
+
+ 
+ 
+</body>
+</html>
